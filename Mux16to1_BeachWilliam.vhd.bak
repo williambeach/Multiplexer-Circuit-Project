@@ -1,0 +1,26 @@
+LIBRARY ieee;
+USE ieee.std_logic_1164.all;
+ENTITY Mux16to1_BeachWilliam IS
+	PORT (K0, K1, K2, K3, K4, K5, K6, K7, K8, K9, K10, K11, K12, K13, K14, K15 : IN STD_LOGIC;
+		  u0, u1, u2, u3													   : IN STD_LOGIC;	
+		  H																	   : OUT STD_LOGIC);
+END Mux16to1_BeachWilliam;
+ARCHITECTURE LogicFunc3 OF Mux16to1_BeachWilliam IS
+SIGNAL h1, h2 : STD_LOGIC;
+COMPONENT Mux8to1_BeachWilliam
+	PORT (J0, J1, J2, J3, J4, J5, J6, J7, t0, t1, t2 :IN STD_LOGIC;
+		  G											 :OUT STD_LOGIC);
+END COMPONENT;
+COMPONENT Mux4to1_BeachWilliam
+	PORT (I0, I1, I2, I3, s0, s1 :IN STD_LOGIC;
+		  F						 :OUT STD_LOGIC);
+END COMPONENT;
+COMPONENT Mux2to1_BeachWilliam
+	PORT(x1, x2, s: IN STD_LOGIC;
+		f		  : OUT STD_LOGIC);
+END COMPONENT;
+BEGIN
+	mux0: Mux8to1_BeachWilliam PORT MAP(J0=>K0, J1=>K1, J2=>K2, J3=>K3, J4=>K4, J5=>K5, J6=>K6, J7=>K7,
+	t0=>u0, t1=>u1, t2=>u2, G=>h1);
+	mux1: Mux8to1_BeachWilliam PORT MAP(J0=>K8, J1=>K9, J2=>K10, J3=>K11, J4=>K12, J5=>K13, J6=>K14, J7=>K15,
+	t0=>u0, t1=>u1, t2=>u2, G=>h2);

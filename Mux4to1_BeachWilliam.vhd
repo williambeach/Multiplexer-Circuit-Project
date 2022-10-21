@@ -1,0 +1,18 @@
+LIBRARY ieee;
+USE ieee.std_logic_1164.all;
+ENTITY Mux4to1_BeachWilliam IS
+	PORT (I0, I1, I2, I3, s0, s1 :IN STD_LOGIC;
+		  F						 :OUT STD_LOGIC);
+END Mux4to1_BeachWilliam;
+
+ARCHITECTURE LogicFunc1 OF Mux4to1_BeachWilliam IS
+SIGNAL f1, f2     : STD_LOGIC;
+COMPONENT Mux2to1_BeachWilliam
+	PORT(x1, x2, s: IN STD_LOGIC;
+		f		  : OUT STD_LOGIC);
+END COMPONENT;
+BEGIN
+	mux0: Mux2to1_BeachWilliam PORT MAP(x1=>I0, x2=>I1, s=>s0, f=>f1);
+	mux1: Mux2to1_BeachWilliam PORT MAP(x1=>I2, x2=>I3, s=>s0, f=>f2);
+	mux2: Mux2to1_BeachWilliam PORT MAP(x1=>f1, x2=>f2, s=>s1, f=>F);
+END LogicFunc1;
